@@ -56,7 +56,7 @@ hosts:
   - 104.18.3.2
   - 104.18.2.2
 
-prof: &prof {type: http, size-limit: 15000, interval: 10800, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 300}, override: {skip-cert-verify: true}}
+prof: &prof {type: http, size-limit: 15000, interval: 10800, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 300}, override: {skip-cert-verify: true, packet-encoding: xudp, network: tcp, smux: {enabled: true}}}
       
 global-client-fingerprint: random
 log-level: silent
@@ -131,13 +131,13 @@ proxy-groups:
 proxy-providers:
   'sg':
     url: >-
-      https://nautica.foolvpn.me/api/v1/sub?cc=SG&limit=100&vpn=vless&port=443&domain=bug
+      https://nautica.foolvpn.me/api/v1/sub?cc=SG&limit=200&vpn=vless&port=443,80&domain=bug
     path: ./SG
     filter: 'Ocean'
     <<: *prof
   'id':
     url: >-
-      https://nautica.foolvpn.me/api/v1/sub?cc=ID&limit=50&vpn=vless&port=443&domain=bug
+      https://nautica.foolvpn.me/api/v1/sub?cc=ID&limit=50&vpn=vless&port=443,80&domain=bug
     path: ./ID
     <<: *prof
   'akun':
