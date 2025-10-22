@@ -12,9 +12,9 @@ proxy-providers:
       udp-over-tcp: true
 
   openproxy:
-    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
+    url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt"
     type: http
-    interval: 3600
+    interval: 900
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[server]"
@@ -23,14 +23,9 @@ proxy-providers:
       skip-cert-verify: true
       udp-over-tcp: true
     exclude-type: vless
-    proxy: lemot
 
 hosts:
   'alpha.clash.dev':
-  - 104.18.53.42 #byu ilped
-  - 104.18.51.6 #byu ilped
-  - 104.20.46.147 #xlvidio
-  - 172.66.144.39 #xlvidio
   - 104.18.3.2 #wifiid
   - 104.18.2.2 #wifiid
 
@@ -97,62 +92,6 @@ dns:
     - https://one.one.one.one/dns-query
 
 proxy-groups:
-
-  - name: Default
-    type: select
-    proxies: [otomatis, DIRECT, taiwan, hongkong, Jepang, Singapura, Amerika Serikat, Wilayah lain, semua node]
-
-  - name: Telegram
-    type: select
-    proxies: [Default, semua node, lemot]
-
-  - name: YouTube
-    type: select
-    proxies: [Default, taiwan, hongkong, Jepang, Singapura, Amerika Serikat, Wilayah lain, semua node, otomatis, DIRECT]
-
-  - name: NETFLIX
-    type: select
-    proxies: [Default, taiwan, hongkong, Jepang, Singapura, Amerika Serikat, Wilayah lain, semua node, otomatis, DIRECT]
-
-  - name: Spotify
-    type: select
-    proxies:  [Default, taiwan, hongkong, Jepang, Singapura, Amerika Serikat, Wilayah lain, semua node, otomatis, DIRECT]
-
-  - name: lainnya
-    type: select
-    proxies:  [Default, taiwan, hongkong, Jepang, Singapura, Amerika Serikat, Wilayah lain, semua node, otomatis, DIRECT]
-
-  #Terpisah, berikut pengelompokan regionalnya
-  - name: hongkong
-    type: url-test
-    tolerance: 10
-    interval: 300
-    include-all: true
-    exclude-filter: fool
-    exclude-type: direct
-    filter: "(?i)hk|hongkong|🇭🇰"
-    disable-udp: true
-
-  - name: Jepang
-    type: url-test
-    tolerance: 10
-    interval: 300
-    include-all: true
-    exclude-filter: fool
-    exclude-type: direct
-    filter: "(?i)日|jp|japan"
-    disable-udp: true
-
-  - name: Amerika Serikat
-    type: url-test
-    tolerance: 10
-    interval: 300
-    include-all: true
-    exclude-filter: fool
-    exclude-type: direct
-    filter: "(?i)美|us|unitedstates|united states"
-    disable-udp: true
-
   - name: Singapura
     type: url-test
     tolerance: 10
@@ -163,45 +102,11 @@ proxy-groups:
     filter: "(?i)(新|sg|singapore|🇸🇬|SG)"
     disable-udp: true
 
-  - name: taiwan
-    type: url-test
-    tolerance: 10
-    interval: 300
-    include-all: true
-    exclude-filter: fool
-    exclude-type: direct
-    filter: "(?i)(tw|taiwan|🇹🇼)"
-    disable-udp: true
-
-  - name: Wilayah lain
-    type: url-test
-    tolerance: 10
-    interval: 300
-    include-all: true
-    exclude-filter: fool
-    exclude-type: direct
-    filter: "(?i)^(?!.*(?:hk|hongkong|🇭🇰|🇳🇱|🇯🇵|🇺🇸|🇸🇬|🇨🇳|nl|netherland|日|jp|japan|新|sg|singapore|美|us|unitedstates|tw|taiwan|🇹🇼)).*"
-
-  - name: semua node
-    type: select
-    include-all: true
-    exclude-filter: fool
-    exclude-type: direct
-
-  - name: otomatis
-    type: url-test
-    include-all: true
-    exclude-type: direct
-    exclude-filter: fool|id🇮🇩|🇲🇨|indonesia
-    tolerance: 10
-    interval: 300
-    disable-udp: true
-
   - name: lemot
-    type: load-balance
+    type: url-test
     use: [ fool ]
     exclude-type: direct
-    strategy: round-robin
+    tolerance: 30
     interval: 300
 
   - name: x
@@ -210,11 +115,9 @@ proxy-groups:
 
 rules:
   - NETWORK,udp,lemot
+  - AND,((NETWORK,UDP),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
   - GEOIP,lan,DIRECT,no-resolve
-  - GEOSITE,youtube,YouTube
-  - GEOSITE,telegram,Telegram
-  - GEOSITE,spotify,Spotify
-  - GEOIP,netflix,NETFLIX
-  - GEOIP,telegram,Telegram
   - GEOSITE,category-porn,x
-  - MATCH,lainnya
+  - MATCH,Singapura
