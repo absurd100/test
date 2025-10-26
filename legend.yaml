@@ -12,9 +12,9 @@ proxy-providers:
       udp-over-tcp: true
 
   openproxy:
-    url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt"
+    url: "https://github.com/Epodonios/v2ray-configs/raw/main/Splitted-By-Protocol/vmess.txt"
     type: http
-    interval: 900
+    interval: 3600
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[server]"
@@ -92,15 +92,22 @@ dns:
     - https://one.one.one.one/dns-query
 
 proxy-groups:
-  - name: Singapura
+
+  - name: all
     type: url-test
-    tolerance: 10
+    tolerance: 30
     interval: 300
     include-all: true
-    exclude-filter: fool
+    exclude-filter: fool|All-|t.me
     exclude-type: direct
-    filter: "(?i)(新|sg|singapore|🇸🇬|SG)"
-    disable-udp: true
+
+  - name: udp
+    type: url-test
+    tolerance: 30
+    interval: 300
+    include-all: true
+    filter: All-|t.me
+    exclude-type: direct
 
   - name: lemot
     type: url-test
@@ -114,10 +121,11 @@ proxy-groups:
     proxies: [ REJECT, PASS ]
 
 rules:
-  - NETWORK,udp,lemot
-  - AND,((NETWORK,UDP),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - NETWORK,udp,udp
+  - GEOSITE,telegram,udp
+  - GEOSITE,youtube,all
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
   - GEOIP,lan,DIRECT,no-resolve
   - GEOSITE,category-porn,x
-  - MATCH,Singapura
+  - MATCH,all
