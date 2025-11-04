@@ -36,7 +36,6 @@ proxies:
   port: 443
 
 mixed-port: 7890
-ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
