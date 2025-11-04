@@ -12,7 +12,7 @@ proxy-providers:
       udp-over-tcp: true
 
   openproxy:
-    url: "https://github.com/Epodonios/v2ray-configs/raw/main/Splitted-By-Protocol/vmess.txt"
+    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
     type: http
     interval: 3600
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
@@ -23,17 +23,125 @@ proxy-providers:
       skip-cert-verify: true
       udp-over-tcp: true
     exclude-type: vless
+    proxy: "lemot"
 
 hosts:
   'alpha.clash.dev':
   - 104.18.3.2 #wifiid
   - 104.18.2.2 #wifiid
+proxies:
+- name: "socks"
+  type: socks5
+  server: 104.18.3.2
+  port: 443
 
 mixed-port: 7890
 ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  default-nameserver:
+    - 1.1.1.2
+    - 1.0.0.2
+  nameserver:
+    - system
+    - dhcp://en0
+  proxy-server-nameserver:
+    - system
+    - dhcp://en0
+  fallback:
+    - system
+    - dhcp://en0
+
+proxy-groups:
+
+  - name: all
+    type: url-test
+    interval: 300
+    tolerance: 30
+    include-all: true
+    exclude-filter: fool|socks|JP|SG|HK
+    exclude-type: direct|socks
+
+  - name: udp
+    type: url-test
+    interval: 300
+    tolerance: 30
+    include-all: true
+    filter: JP|SG|HK
+
+  - name: lemot
+    type: url-test
+    use: [ fool ]
+    exclude-type: direct
+    tolerance: 30
+    interval: 300
+
+  - name: x
+    type: select
+    proxies: [ REJECT, PASS ]
+
+rules:
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
+  - NETWORK,udp,udp
+  - GEOSITE,telegram,udp
+  - GEOIP,telegram,udp
+  - GEOSITE,youtube,all
+  - GEOIP,lan,DIRECT,no-resolve
+  - GEOSITE,category-porn,x
+  - MATCH,all
 external-controller: 127.0.0.1:9090
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
