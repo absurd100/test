@@ -1,4 +1,4 @@
-# url udplemot
+# url udplemot0
 proxy-providers:
   fool:
     url: "https://raw.githubusercontent.com/absurd100/test/refs/heads/main/UDP-bug.yaml"
@@ -92,21 +92,25 @@ dns:
     - "+.local"
     - "+.market.xiaomi.com"
   default-nameserver:
-    - 1.1.1.2
-    - 1.0.0.2
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
   nameserver:
-    - system
     - dhcp://en0
+    - dhcp://system
   proxy-server-nameserver:
-    - system
-    - dhcp://en0
-    - https://1.1.1.2/dns-query
-    - https://1.0.0.2/dns-query
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
   fallback:
     - system
     - dhcp://en0
-    - 1.1.1.2
-    - 1.0.0.2
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
 
 proxy-groups:
 
@@ -140,7 +144,5 @@ rules:
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
   - NETWORK,udp,udp
-  - GEOSITE,youtube,all
-  - GEOIP,lan,DIRECT,no-resolve
   - GEOSITE,category-porn,x
   - MATCH,all
