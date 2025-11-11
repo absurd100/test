@@ -117,23 +117,15 @@ proxy-groups:
   - name: all
     type: url-test
     interval: 300
-    tolerance: 30
+    tolerance: 10
     include-all: true
-    exclude-filter: fool|socks|JP|SG|HK
-    exclude-type: direct|socks
-
-  - name: udp
-    type: url-test
-    interval: 300
-    tolerance: 30
-    include-all: true
-    filter: JP|SG|HK
+    filter: JP|SG|HK|ID
 
   - name: lemot
     type: url-test
     use: [ fool ]
     exclude-type: direct
-    tolerance: 30
+    tolerance: 10
     interval: 300
 
   - name: x
@@ -143,6 +135,5 @@ proxy-groups:
 rules:
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
-  - NETWORK,udp,udp
   - GEOSITE,category-porn,x
   - MATCH,all
