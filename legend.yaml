@@ -23,7 +23,6 @@ proxy-providers:
       skip-cert-verify: true
       udp-over-tcp: true
     exclude-type: vless
-    proxy: "udp"
 
 hosts:
   'alpha.clash.dev':
