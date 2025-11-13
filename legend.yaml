@@ -1,5 +1,15 @@
-# url udplemot0
+# custom
 proxy-providers:
+  custom:
+    path: ./proxies/custom
+    type: file
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-suffix: "[custom]"
+      udp: true
+      skip-cert-verify: true
+      udp-over-tcp: true
+
   fool:
     url: "https://raw.githubusercontent.com/absurd100/test/refs/heads/main/UDP-bug.yaml"
     type: http
@@ -10,6 +20,7 @@ proxy-providers:
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
+    proxy: lemot
 
   openproxy:
     url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
@@ -22,7 +33,8 @@ proxy-providers:
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
-    exclude-type: vless
+    exclude-type: vless|ss
+    proxy: lemot
 
 hosts:
   'alpha.clash.dev':
@@ -114,6 +126,14 @@ dns:
 proxy-groups:
 
   - name: all
+    type: select
+    proxies: [ auto ]
+    interval: 300
+    tolerance: 10
+    include-all: true
+    filter: JP|SG|HK|ID
+
+  - name: auto
     type: url-test
     interval: 300
     tolerance: 10
@@ -122,7 +142,8 @@ proxy-groups:
 
   - name: lemot
     type: url-test
-    use: [ fool ]
+    proxies: [ socks ]
+    use: [ fool, custom ]
     exclude-type: direct
     tolerance: 10
     interval: 300
