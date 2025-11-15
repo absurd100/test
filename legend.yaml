@@ -33,7 +33,6 @@ proxy-providers:
       skip-cert-verify: true
       udp-over-tcp: true
     exclude-type: vless|ss
-    proxy: lemot
 
 hosts:
   'alpha.clash.dev':
