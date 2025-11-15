@@ -1,4 +1,4 @@
-# custom
+# customx
 proxy-providers:
   custom:
     path: ./proxies/custom
@@ -20,7 +20,6 @@ proxy-providers:
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
-    proxy: lemot
 
   openproxy:
     url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
@@ -40,11 +39,6 @@ hosts:
   'alpha.clash.dev':
   - 104.18.3.2 #wifiid
   - 104.18.2.2 #wifiid
-proxies:
-- name: "socks"
-  type: socks5
-  server: 104.18.3.2
-  port: 443
 
 mixed-port: 7890
 ipv6: true
@@ -96,6 +90,9 @@ tun:
 dns:
   enable: true
   ipv6: true
+  use-hosts: true
+  respect-rules: true
+  use-system-hosts: false
   enhanced-mode: fake-ip
   fake-ip-filter:
     - "*"
@@ -110,6 +107,10 @@ dns:
   nameserver:
     - dhcp://en0
     - dhcp://system
+  direct-nameserver:
+    - dhcp://en0
+    - dhcp://system
+    - system
   proxy-server-nameserver:
     - 1.1.1.1
     - 1.0.0.1
@@ -142,7 +143,6 @@ proxy-groups:
 
   - name: lemot
     type: url-test
-    proxies: [ socks ]
     use: [ fool, custom ]
     exclude-type: direct
     tolerance: 10
