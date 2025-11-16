@@ -1,4 +1,4 @@
-# customx
+# customxnew
 proxy-providers:
   custom:
     path: ./proxies/custom
@@ -128,13 +128,13 @@ proxy-groups:
   - name: all
     type: select
     proxies: [ auto ]
-    interval: 300
-    tolerance: 10
+    lazy: true
     include-all: true
     filter: JP|SG|HK|ID
 
   - name: auto
     type: url-test
+    url: 'https://www.gstatic.com/generate_204'
     interval: 300
     tolerance: 10
     include-all: true
@@ -145,6 +145,7 @@ proxy-groups:
     use: [ fool, custom ]
     exclude-type: direct
     tolerance: 10
+    url: 'https://www.gstatic.com/generate_204'
     interval: 300
 
   - name: x
