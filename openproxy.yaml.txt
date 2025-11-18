@@ -1,0 +1,158 @@
+# customxr
+proxy-providers:
+  udp2:
+    path: ./proxies/custom
+    type: file
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-suffix: "[udp]"
+      dialer-proxy: auto
+      udp: true
+      skip-cert-verify: true
+      udp-over-tcp: true
+
+  udp1:
+    url: "https://raw.githubusercontent.com/absurd100/test/refs/heads/main/udpopenproxy.yaml"
+    type: http
+    interval: 3600
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-suffix: "[udp]"
+      udp: true
+      skip-cert-verify: true
+      udp-over-tcp: true
+
+  openproxy:
+    url: "https://joss.gpj1.web.id/vpn/v2ray?type=vless&domain=ava.game.naver.com&tls=false&wildcard=false&limit=5&country=sg"
+    type: http
+    interval: 3600
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-suffix: "[server]"
+      udp: true
+      skip-cert-verify: true
+      udp-over-tcp: true
+
+hosts:
+  'joss.gpj1.web.id':
+  - 104.18.3.2 #wifiid
+  - 104.18.2.2 #wifiid 
+
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  use-hosts: true
+  respect-rules: true
+  use-system-hosts: false
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  default-nameserver:
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
+  nameserver:
+    - dhcp://en0
+    - dhcp://system
+  direct-nameserver:
+    - dhcp://en0
+    - dhcp://system
+    - system
+  proxy-server-nameserver:
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
+  fallback:
+    - system
+    - dhcp://en0
+    - 1.1.1.1
+    - 1.0.0.1
+    - 8.8.8.8
+    - 8.8.4.4
+
+proxy-groups:
+
+  - name: auto
+    type: url-test
+    use: [ openproxy ]
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+    tolerance: 10
+
+  - name: MANUAL
+    type: select
+    proxies: [ auto ]
+    lazy: true
+    use: [ openproxy ]
+    exclude-filter: fool|custom
+
+  - name: x
+    type: select
+    proxies: [ REJECT, PASS ]
+
+  - name: udp
+    type: url-test
+    use: [ udp1, udp2 ]
+    exclude-type: direct
+    tolerance: 10
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+
+rules:
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - NETWORK,UDP,udp
+  - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
+  - GEOSITE,category-porn,x
+  - MATCH,MANUAL
