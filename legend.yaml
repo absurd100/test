@@ -1,4 +1,4 @@
-# customx
+# customxr
 proxy-providers:
   custom:
     path: ./proxies/custom
@@ -28,16 +28,20 @@ proxy-providers:
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[server]"
-      dialer-proxy: "lemot"
+      dialer-proxy: lemot
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
     exclude-type: vless|ss
-
 hosts:
+
+  '*.fonixapp.org': 'alpha.clash.dev'
+  'speedtest.org': 'alpha.clash.dev'
+  'www.speedtest.net': 'alpha.clash.dev'
+  '*.ns.cloudflare.com': 'alpha.clash.dev'
   'alpha.clash.dev':
   - 104.18.3.2 #wifiid
-  - 104.18.2.2 #wifiid
+  - 104.18.2.2 #wifiid 
 
 mixed-port: 7890
 ipv6: true
@@ -140,7 +144,6 @@ proxy-groups:
     lazy: true
     include-all: true
     exclude-filter: fool|custom
-    filter: JP|SG|HK|ID
 
   - name: x
     type: select
