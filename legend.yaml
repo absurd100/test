@@ -1,4 +1,4 @@
-# customxnew
+# customx
 proxy-providers:
   custom:
     path: ./proxies/custom
@@ -13,7 +13,7 @@ proxy-providers:
   fool:
     url: "https://raw.githubusercontent.com/absurd100/test/refs/heads/main/UDP-bug.yaml"
     type: http
-    interval: 3600
+    interval: 10800
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[fool]"
@@ -125,20 +125,26 @@ dns:
 
 proxy-groups:
 
-  - name: all
-    type: select
-    proxies: [ auto ]
-    lazy: true
-    include-all: true
-    filter: JP|SG|HK|ID
-
   - name: auto
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
     tolerance: 10
     include-all: true
+    exclude-filter: fool|custom
     filter: JP|SG|HK|ID
+
+  - name: MANUAL
+    type: select
+    proxies: [ auto ]
+    lazy: true
+    include-all: true
+    exclude-filter: fool|custom
+    filter: JP|SG|HK|ID
+
+  - name: x
+    type: select
+    proxies: [ REJECT, PASS ]
 
   - name: lemot
     type: url-test
@@ -148,12 +154,8 @@ proxy-groups:
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
 
-  - name: x
-    type: select
-    proxies: [ REJECT, PASS ]
-
 rules:
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
   - GEOSITE,category-porn,x
-  - MATCH,all
+  - MATCH,MANUAL
