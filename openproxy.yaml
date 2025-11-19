@@ -12,6 +12,7 @@ proxy-providers:
       udp-over-tcp: true
 
   udp1:
+    path: ./proxies/udp1
     url: "https://raw.githubusercontent.com/absurd100/test/refs/heads/main/udpopenproxy.yaml"
     type: http
     interval: 3600
@@ -24,7 +25,8 @@ proxy-providers:
       udp-over-tcp: true
 
   openproxy:
-    url: "https://joss.gpj1.web.id/vpn/v2ray?type=vless&domain=ava.game.naver.com&tls=false&wildcard=false&limit=5&country=sg"
+    path: ./proxies/tcp
+    url: "https://colorhex.qzz.io/sub/v2ray?type=vless&server=ns.cloudflare.com&limit=5&tls=true"
     type: http
     interval: 3600
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
@@ -35,7 +37,7 @@ proxy-providers:
       udp-over-tcp: true
 
 hosts:
-  'joss.gpj1.web.id':
+  '+.cloudflare.com':
   - 104.18.3.2 #wifiid
   - 104.18.2.2 #wifiid 
 
