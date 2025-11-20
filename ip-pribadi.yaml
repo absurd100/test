@@ -1,4 +1,4 @@
-# customjoss
+# customjossx
 proxy-providers:
   udp2:
     path: ./proxies/custom
@@ -24,6 +24,7 @@ proxy-providers:
       skip-cert-verify: true
       udp-over-tcp: true
     exclude-type: vless
+    exclude-filter: "新加坡"
     filter: 🇸🇬
 
   openproxy:
