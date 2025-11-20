@@ -1,4 +1,4 @@
-# customjossx
+# customjossxlude
 proxy-providers:
   udp2:
     path: ./proxies/custom
@@ -145,6 +145,7 @@ proxy-groups:
   - name: udp
     type: url-test
     use: [ udp1, udp2 ]
+    exclude-filter: "01"
     exclude-type: direct
     tolerance: 10
     url: 'https://www.gstatic.com/generate_204'
