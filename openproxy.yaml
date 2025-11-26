@@ -1,4 +1,4 @@
-# customxrw
+# customopenproxy
 proxy-providers:
   udp2:
     path: ./proxies/custom
@@ -13,9 +13,9 @@ proxy-providers:
 
   udp1:
     path: ./proxies/udp1
-    url: "https://raw.githubusercontent.com/absurd100/test/refs/heads/main/udpopenproxy.yaml"
+    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
     type: http
-    interval: 3600
+    interval: 21600
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[udp]"
@@ -23,6 +23,7 @@ proxy-providers:
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
+    filter: 🇸🇬|🇯🇵|🇭🇰
 
   openproxy:
     path: ./proxies/tcp
@@ -50,13 +51,7 @@ external-controller: 127.0.0.1:9090
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
-geodata-mode: true
-geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
-
+geodata-mode: false
 find-process-mode: strict
 global-client-fingerprint: chrome
 
