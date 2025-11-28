@@ -23,7 +23,7 @@ proxy-providers:
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
-    filter: 🇸🇬|🇯🇵|🇭🇰
+    filter: 🇸🇬|🇭🇰
 
   openproxy:
     path: ./proxies/tcp
