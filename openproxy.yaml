@@ -1,4 +1,4 @@
-# customopenproxy
+# customopenproxylong
 proxy-providers:
   udp2:
     path: ./proxies/custom
@@ -15,7 +15,7 @@ proxy-providers:
     path: ./proxies/udp1
     url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
     type: http
-    interval: 21600
+    interval: 36000
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[udp]"
@@ -23,13 +23,14 @@ proxy-providers:
       udp: true
       skip-cert-verify: true
       udp-over-tcp: true
-    filter: 🇸🇬|🇭🇰
+    exclude-type: ss
+    filter: 🇸🇬|🇭🇰|🏳
 
   openproxy:
     path: ./proxies/tcp
     url: "https://colorhex.qzz.io/sub/v2ray?type=vless&server=ns.cloudflare.com&limit=5&tls=false"
     type: http
-    interval: 3600
+    interval: 36000
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-suffix: "[server]"
