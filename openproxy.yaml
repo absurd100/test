@@ -143,7 +143,7 @@ proxy-groups:
     type: url-test
     use: [ udp1, udp2 ]
     exclude-type: direct
-    tolerance: 10
+    tolerance: 30
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
 
