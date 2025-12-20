@@ -1,4 +1,4 @@
-# customopenproxylong
+# customopenproxylongX
 proxy-providers:
   udp2:
     path: ./proxies/custom
