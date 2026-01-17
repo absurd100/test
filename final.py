@@ -5,9 +5,9 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import RPCError
 
 # --- KONFIGURASI API ---
-API_ID = 31339570 
-API_HASH = "1f14c1c891126b5bcd0800b94822c821"
-BOT_TOKEN = "8337506694:AAEtaGjUC4e9TO9bAh51c2PuaVb4mhvW1MQ"
+API_ID = IP_ID_AKUN_TELE 
+API_HASH = "API_HASH_AKUNN_TELE"
+BOT_TOKEN = "TOKEN_BOT_UTAKA"
 
 app = Client("antispam_final_2026", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True)
 
