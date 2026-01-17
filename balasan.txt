@@ -1,0 +1,46 @@
+<blockquote>tutorial penggunaan bot clone Ano menfess :
+
+<b>⚙️ CUSTOM POST :</b>
+di menu ini kalian akan dapat menggunakan pengaturan custom pengaturan channel tujuan dan template hasil postingan di chanel kalian
+<b>📢 Channell :</b>
+mengatur channel tujuan menfess. setelah pencet tombol ini kalian akan diminta mengirim id channel kalian ( biasanya berawalan - 100 ) 
+<b>📝 Template :</b>
+mengganti tampilan kiriman di channell tujuan menfess. kalian bebas mengkreasikan bentuk tampilan menfess kalaian. gunakan :
+{TEXT} untuk posisi text kiriman
+{SENDER} untuk menaampilkan pengirim
+
+contoh :
+dari {SENDER}
+isi {TEXT}
+
+akan ditampilkan :
+dari Ano
+isi blablabla.. 
+
+atau kamu bisa klik :
+<b>🔄 Reset :</b> Template ke Default
+untuk mengembalikan ke template default bawaan bot
+
+<b>📢 BROADCAST :</b> mengirim broadcast
+
+jika owner bot clone klik
+<b>🔓 MODE GRATIS :</b> semua orang bisa mengirim menfess gratis 0 token
+<b>🔒 MODE BAYAR :</b> aturan TOKEN dijalankan
+<b>🖼️ SET QRIS :</b> klik dan kirimkan link foto qris kamu, kamu bisa membuatnya di @vTelegraphBot
+contoh link : https://telegra.ph/file/61fa5f42e700dd923ba84-269911c422bc589cc9.jpg
+
+dengan menombol 
+<b>👤 MENU USER :</b> kamu akan menampilkan menu bot pengiriman menfess di bot kamu
+
+<b>📋 TUTORIAL :</b> menampilkan text tutorial
+
+
+
+<b>💬 Lihat Komentar</b>
+<b>📝 Postingan Asli ↗️</b>
+
+log owner : tiap kiriman menfess akan diteruskan ke owner via privat bot yang dikengkapi tombol tindakan <b>🚫 BAN</b> dan <b>✅ UNBAN</b> untuk memudahkan moderasi
+
+MENU PEMBAYARAN :
+setiap kali user mengirim bukti pembayaran (foto}, owner clone bot akan mendapatkan foto itu via privat bot dilengkapi tombol <b>➖ 💎 5 ➕ dan ✅ KONFIRMASI</b> untuk menentukan seberapa banyak token yang akan di kirimbke user</blockquote>
+
