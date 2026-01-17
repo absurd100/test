@@ -1,4 +1,5 @@
-<blockquote>tutorial penggunaan bot clone Ano menfess :
+<blockquote expandable> 
+<b>🟢TUTORIAL PENGGUNAAN BOT AUTO MENFESS🟢</b>
 
 <b>⚙️ CUSTOM POST :</b>
 di menu ini kalian akan dapat menggunakan pengaturan custom pengaturan channel tujuan dan template hasil postingan di chanel kalian
@@ -30,17 +31,16 @@ jika owner bot clone klik
 contoh link : https://telegra.ph/file/61fa5f42e700dd923ba84-269911c422bc589cc9.jpg
 
 dengan menombol 
-<b>👤 MENU USER :</b> kamu akan menampilkan menu bot pengiriman menfess di bot kamu
+<b>👤 MENU USER :</b> kamu akan menampilkan menu bot pengiriman menfess di bot kamu, seperti menu yang tampil di member biasa ( bukan admin bot ) 
 
-<b>📋 TUTORIAL :</b> menampilkan text tutorial
+saat menfess dikomentari, maka pengirim akan mendapatkan notifikasi menuju komentar, 
+<b>💬 Lihat Komentar</b> menuju komentar dituju
+<b>📝 Postingan Asli ↗️</b> menuju postingan asli di channel menfess
 
+<b>LOG OWNER</b> : tiap kiriman menfess akan diteruskan ke owner via privat bot yang dikengkapi tombol tindakan <b>🚫 BAN</b> dan <b>✅ UNBAN</b> untuk memudahkan moderasi
 
-
-<b>💬 Lihat Komentar</b>
-<b>📝 Postingan Asli ↗️</b>
-
-log owner : tiap kiriman menfess akan diteruskan ke owner via privat bot yang dikengkapi tombol tindakan <b>🚫 BAN</b> dan <b>✅ UNBAN</b> untuk memudahkan moderasi
-
-MENU PEMBAYARAN :
+<b>MODE HARGA</b> owner bot bisa memilih mode oada menu owner untuk menentukan menfes atau berbayar, jika gratis maka token tidak dibutuhkan. 
+<b>MENU PEMBAYARAN TOKEN :</b> jika owner aktifkan mode berbayar
 setiap kali user mengirim bukti pembayaran (foto}, owner clone bot akan mendapatkan foto itu via privat bot dilengkapi tombol <b>➖ 💎 5 ➕ dan ✅ KONFIRMASI</b> untuk menentukan seberapa banyak token yang akan di kirimbke user</blockquote>
 
+created by Ano
