@@ -13,10 +13,12 @@ mengganti tampilan kiriman di channell tujuan menfess. kalian bebas mengkreasika
 contoh :
 dari {SENDER}
 isi {TEXT}
+via {BOT_LINK}
 
 akan ditampilkan :
 dari Ano
 isi blablabla.. 
+via Bot menfess
 
 atau kamu bisa klik :
 <b>🔄 Reset :</b> Template ke Default
